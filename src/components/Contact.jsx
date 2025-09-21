@@ -1,78 +1,154 @@
-import React from "react";
-import { Mail, Phone, Github, Linkedin } from "lucide-react"; // icons
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, Phone, Github, Linkedin, ExternalLink } from "lucide-react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
+    // Yahan aap apna backend API call add kar sakte hain.
+    // Jaise ki, EmailJS ya ek custom serverless function.
+    // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
+
+    // Reset form after submission
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+    });
+  };
+
+  const socialLinks = {
+    github: "https://github.com/sahdevgithub403",
+    linkedin: "https://linkedin.com/in/sahdevpuran",
+    email: "mailto:sahdev.puran@email.com"
+  };
+
   return (
-    <div
+    <section
       id="contact"
-      className="min-h-screen flex flex-col justify-center items-center px-6 py-20 bg-gray-950 text-white"
+      className="min-h-screen flex flex-col justify-center items-center px-6 py-20 bg-gradient-to-br from-gray-950 via-purple-950 to-black text-white"
     >
-      {/* Heading */}
-      <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-10">
-        Contact Me
-      </h2>
-
-      {/* Contact Form */}
-      <form
-        className="flex flex-col gap-5 w-full max-w-lg p-8 rounded-2xl bg-gray-900/70 border border-gray-700 shadow-lg backdrop-blur-lg animate-slideIn"
+      {/* Main Container for Animations */}
+      <motion.div
+        className="w-full max-w-4xl"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
       >
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="px-4 py-3 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 
-          border border-gray-700 focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition"
-        />
-        <input
-          type="email"
-          placeholder="Your Email"
-          className="px-4 py-3 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 
-          border border-gray-700 focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition"
-        />
-        <textarea
-          placeholder="Your Message"
-          className="px-4 py-3 h-32 rounded-lg bg-gray-800 text-gray-200 placeholder-gray-400 
-          border border-gray-700 focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition resize-none"
-        ></textarea>
-
-        <button
-          type="submit"
-          className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl text-lg font-semibold text-white 
-          hover:from-blue-600 hover:to-cyan-500 transition transform hover:scale-105 shadow-md"
+        {/* Heading */}
+        <motion.h2
+          className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-16 text-center"
         >
-          Send Message
-        </button>
-      </form>
+          Get In Touch
+        </motion.h2>
 
-      {/* Contact Info + Socials */}
-      <div className="mt-10 flex flex-col md:flex-row gap-8 items-center text-gray-300">
-        <div className="flex items-center gap-3">
-          <Mail className="text-blue-400" /> <span>yourmail@example.com</span>
+        {/* Contact Form & Info Grid */}
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* Contact Info */}
+          <div className="flex flex-col gap-6 p-8 rounded-2xl">
+            <h3 className="text-3xl font-bold text-gray-300">Let's connect!</h3>
+            <p className="text-gray-400 leading-relaxed">
+              Have a project in mind or just want to say hello? I'd love to hear from you. Feel free to use the form or reach out directly.
+            </p>
+            <div className="flex items-center gap-3 text-gray-300">
+              <Mail size={24} className="text-blue-400" />
+              <span className="text-lg">sahdev.puran@email.com</span>
+            </div>
+            <div className="flex items-center gap-3 text-gray-300">
+              <Phone size={24} className="text-cyan-400" />
+              <span className="text-lg">+91 62021 57680</span>
+            </div>
+            {/* Social Links */}
+            <div className="flex gap-4 mt-6">
+              <motion.a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
+                whileHover={{ y: -2 }}
+              >
+                <Github size={24} />
+              </motion.a>
+              <motion.a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
+                whileHover={{ y: -2 }}
+              >
+                <Linkedin size={24} />
+              </motion.a>
+              <motion.a
+                href={socialLinks.email}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
+                whileHover={{ y: -2 }}
+              >
+                <Mail size={24} />
+              </motion.a>
+            </div>
+          </div>
+          
+          {/* Contact Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-6 w-full p-8 rounded-3xl bg-white/5 border border-gray-800 shadow-xl backdrop-blur-md"
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="px-4 py-3 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700 
+              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              className="px-4 py-3 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700 
+              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              className="px-4 py-3 h-40 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700
+              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300 resize-none"
+            ></textarea>
+            <motion.button
+              type="submit"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl text-lg font-semibold text-white shadow-lg"
+              whileHover={{ scale: 1.02, boxShadow: "0px 8px 20px rgba(0,0,0,0.4)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Send Message
+            </motion.button>
+          </form>
         </div>
-        <div className="flex items-center gap-3">
-          <Phone className="text-cyan-400" /> <span>+91 98765 43210</span>
-        </div>
-      </div>
-
-      {/* Social Links */}
-      <div className="flex gap-6 mt-6">
-        <a
-          href="https://github.com/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition"
-        >
-          <Github size={22} />
-        </a>
-        <a
-          href="https://linkedin.com/in/yourusername"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition"
-        >
-          <Linkedin size={22} />
-        </a>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 
