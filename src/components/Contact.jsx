@@ -1,153 +1,198 @@
-import React, { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { Mail, Phone, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+
+const socialLinks = {
+  github: "https://github.com/sahdevpuran",
+  linkedin: "https://www.linkedin.com/in/sahdevpuran",
+  email: "mailto:sahdevpuran192@gmail.com",
+};
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const fadeIn = (delay = 0) => ({
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { delay, duration: 0.6, ease: "easeOut" },
+    },
   });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Submitted:", formData);
-    // Yahan aap apna backend API call add kar sakte hain.
-    // Jaise ki, EmailJS ya ek custom serverless function.
-    // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
-
-    // Reset form after submission
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
-  };
-
-  const socialLinks = {
-    github: "https://github.com/sahdevgithub403",
-    linkedin: "https://linkedin.com/in/sahdevpuran",
-    email: "mailto:sahdev.puran@email.com"
-  };
 
   return (
     <section
       id="contact"
-      className="min-h-screen flex flex-col justify-center items-center px-6 py-20 bg-gradient-to-br from-gray-950 via-purple-950 to-black text-white"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 py-20 overflow-hidden bg-white dark:bg-gradient-to-br from-gray-950 via-blue-950 to-black text-gray-900 dark:text-gray-200 transition-colors duration-300"
     >
-      {/* Main Container for Animations */}
+      {/* Animated Background */}
       <motion.div
-        className="w-full max-w-4xl"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        {/* Heading */}
-        <motion.h2
-          className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 mb-16 text-center"
-        >
-          Get In Touch
-        </motion.h2>
+        className="absolute inset-0 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-950 dark:via-blue-950 dark:to-black"
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
+        }}
+        transition={{
+          duration: 40,
+          ease: "easeInOut",
+          repeat: Infinity,
+        }}
+        style={{
+          backgroundSize: "200% 200%",
+          zIndex: 0,
+        }}
+      />
 
-        {/* Contact Form & Info Grid */}
-        <div className="grid md:grid-cols-2 gap-10">
-          {/* Contact Info */}
-          <div className="flex flex-col gap-6 p-8 rounded-2xl">
-            <h3 className="text-3xl font-bold text-gray-300">Let's connect!</h3>
-            <p className="text-gray-400 leading-relaxed">
-              Have a project in mind or just want to say hello? I'd love to hear from you. Feel free to use the form or reach out directly.
+      {/* Floating Glow Effects */}
+      <motion.div
+        className="absolute w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"
+        animate={{
+          x: [0, 100, -100, 0],
+          y: [0, -80, 80, 0],
+        }}
+        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        style={{ top: "15%", left: "10%", zIndex: 0 }}
+      />
+      <motion.div
+        className="absolute w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl"
+        animate={{
+          x: [0, -100, 100, 0],
+          y: [0, 80, -80, 0],
+        }}
+        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
+        style={{ bottom: "15%", right: "10%", zIndex: 0 }}
+      />
+
+      {/* Section Title */}
+      <motion.h2
+        variants={fadeIn(0.2)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="relative z-10 text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-600 dark:from-blue-400 dark:to-blue-400 mb-16"
+      >
+        Contact Me
+      </motion.h2>
+
+      {/* Contact Info + Form */}
+      <div className="relative z-10 w-full max-w-6xl grid md:grid-cols-2 gap-10">
+        {/* Contact Info */}
+        <motion.div
+          variants={fadeIn(0.4)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <h3 className="text-3xl font-semibold text-blue-500 dark:text-blue-400">
+            Let's Talk
+          </h3>
+          <p className="text-gray-700 dark:text-gray-300">
+            Have a question, project idea, or collaboration in mind? Feel free
+            to reach out — I’d love to connect!
+          </p>
+
+          <div className="flex items-center gap-4">
+            <Mail className="text-blue-500" />
+            <p className="text-gray-600 dark:text-gray-300">
+              sahdevpuran192@gmail.com
             </p>
-            <div className="flex items-center gap-3 text-gray-300">
-              <Mail size={24} className="text-blue-400" />
-              <span className="text-lg">sahdev.puran@email.com</span>
-            </div>
-            <div className="flex items-center gap-3 text-gray-300">
-              <Phone size={24} className="text-cyan-400" />
-              <span className="text-lg">+91 62021 57680</span>
-            </div>
-            {/* Social Links */}
-            <div className="flex gap-4 mt-6">
-              <motion.a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
-                whileHover={{ y: -2 }}
-              >
-                <Github size={24} />
-              </motion.a>
-              <motion.a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
-                whileHover={{ y: -2 }}
-              >
-                <Linkedin size={24} />
-              </motion.a>
-              <motion.a
-                href={socialLinks.email}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-blue-400 transition transform hover:scale-110 shadow-md"
-                whileHover={{ y: -2 }}
-              >
-                <Mail size={24} />
-              </motion.a>
-            </div>
           </div>
-          
-          {/* Contact Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-6 w-full p-8 rounded-3xl bg-white/5 border border-gray-800 shadow-xl backdrop-blur-md"
-          >
+          <div className="flex items-center gap-4">
+            <Phone className="text-blue-500" />
+            <p className="text-gray-600 dark:text-gray-300">
+              +91 6202157680
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <MapPin className="text-blue-500" />
+            <p className="text-gray-600 dark:text-gray-300">
+              Jharkhand, India
+            </p>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex justify-center md:justify-start gap-4 sm:gap-6 mt-6">
+            <motion.a
+              href={socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -2 }}
+              className="p-3 rounded-full bg-white/30 dark:bg-gray-800 hover:bg-white/40 dark:hover:bg-gray-700 
+              text-gray-900 dark:text-gray-300 shadow-lg transition"
+            >
+              <Github size={22} />
+            </motion.a>
+
+            <motion.a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -2 }}
+              className="p-3 rounded-full bg-white/30 dark:bg-gray-800 hover:bg-white/40 dark:hover:bg-gray-700 
+              text-gray-900 dark:text-gray-300 shadow-lg transition"
+            >
+              <Linkedin size={22} />
+            </motion.a>
+
+            <motion.a
+              href={socialLinks.email}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.15, y: -2 }}
+              className="p-3 rounded-full bg-white/30 dark:bg-gray-800 hover:bg-white/40 dark:hover:bg-gray-700 
+              text-gray-900 dark:text-gray-300 shadow-lg transition"
+            >
+              <Mail size={22} />
+            </motion.a>
+          </div>
+        </motion.div>
+
+        {/* Contact Form */}
+        <motion.form
+          variants={fadeIn(0.6)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Name
+            </label>
             <input
               type="text"
-              name="name"
               placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="px-4 py-3 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700 
-              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300"
+              className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-blue-900/10 backdrop-blur-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-gray-100"
             />
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Email
+            </label>
             <input
               type="email"
-              name="email"
               placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              className="px-4 py-3 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700 
-              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300"
+              className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-blue-900/10 backdrop-blur-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-gray-100"
             />
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+              Message
+            </label>
             <textarea
-              name="message"
+              rows="4"
               placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              className="px-4 py-3 h-40 rounded-xl bg-gray-800 text-gray-200 placeholder-gray-400 border border-gray-700
-              focus:border-blue-400 focus:ring-2 focus:ring-blue-500 outline-none transition duration-300 resize-none"
+              className="w-full p-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-blue-900/10 backdrop-blur-xl focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-gray-100"
             ></textarea>
-            <motion.button
-              type="submit"
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl text-lg font-semibold text-white shadow-lg"
-              whileHover={{ scale: 1.02, boxShadow: "0px 8px 20px rgba(0,0,0,0.4)" }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Send Message
-            </motion.button>
-          </form>
-        </div>
-      </motion.div>
+          </div>
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-500 hover:to-blue-500 shadow-lg transition"
+          >
+            Send Message
+          </motion.button>
+        </motion.form>
+      </div>
     </section>
   );
 };
