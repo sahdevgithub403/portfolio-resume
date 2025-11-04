@@ -12,18 +12,49 @@ const About = () => {
   const steps = [
     {
       title: "About Me",
-      desc: "Aspiring Full-Stack Developer & DevOps Enthusiast with hands-on experience in React.js, Spring Boot, MySQL, Docker, and Kubernetes. Skilled in building scalable applications, developing REST APIs, and implementing CI/CD pipelines using Jenkins. Strong foundation in Data Structures and Algorithms. Passionate about solving real-world problems and contributing to innovative software engineering teams.",
+      desc: "Full Stack Developer skilled in React.js, Spring Boot, and MySQL, with hands-on experience in building scalable web applications, REST APIs, and CI/CD pipelines using Jenkins and Docker. Strong foundation in Data Structures & Algorithms with a passion for DevOps automation and problem-solving.",
       done: true,
     },
     {
       title: "Skills",
-      desc: "React, Spring Boot, Docker, Kubernetes, CI/CD, Git, AWS.",
+      desc: "Java, React, Spring Boot, MySQL, Docker, Kubernetes, CI/CD, Git & GitHub.",
       done: true,
       skills: [
-        { name: "React", level: 90 },
-        { name: "Spring Boot", level: 85 },
-        { name: "Docker", level: 80 },
-        { name: "Kubernetes", level: 70 },
+        {
+          name: "Java",
+          level: 90,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+        },
+        {
+          name: "Spring Boot",
+          level: 85,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+        },
+        {
+          name: "React",
+          level: 75,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        },
+        {
+          name: "Docker",
+          level: 70,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        },
+        {
+          name: "Kubernetes",
+          level: 65,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+        },
+        {
+          name: "Git & GitHub",
+          level: 80,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        },
+        {
+          name: "CI/CD (Jenkins)",
+          level: 60,
+          img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+        },
       ],
     },
     {
@@ -33,7 +64,7 @@ const About = () => {
     },
     {
       title: "Projects",
-      desc: "Mentor Application, E-commerce, Portfolio & Social Apps.",
+      desc: "Mentor Application, Banking Application, Portfolio.",
       done: true,
     },
     {
@@ -47,7 +78,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col justify-center items-center px-6 py-20 overflow-hidden bg-gradient-to-br from-gray-950 via-blue-950 to-black text-gray-200"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 py-23 overflow-hidden bg-gradient-to-br from-gray-950 via-blue-950 to-black text-gray-200"
     >
       {/* Animated Gradient Background */}
       <motion.div
@@ -92,7 +123,7 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 text-5xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-400"
+        className="relative z-10 text-5xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400"
       >
         My Journey
       </motion.h2>
@@ -172,27 +203,38 @@ const About = () => {
                 {step.desc}
               </p>
 
-              {/* Skill Bars */}
+              {/* ✅ Skill Bars with Circle Logos */}
               {step.skills && (
-                <div className="mt-5 space-y-3">
+                <div className="mt-5 space-y-4">
                   {step.skills.map((skill, skillIdx) => (
-                    <div key={skillIdx}>
-                      <div className="flex justify-between text-sm text-gray-400">
-                        <span>{skill.name}</span>
-                        <span>{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
-                        <motion.div
-                          className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 1.8,
-                            delay: idx * 0.25 + 0.5 + skillIdx * 0.15,
-                            ease: "easeInOut",
-                          }}
+                    <div key={skillIdx} className="flex items-center gap-3">
+                      {/* Circle around logo */}
+                      <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-900/30 border border-blue-700/50">
+                        <img
+                          src={skill.img}
+                          alt={`${skill.name} logo`}
+                          className="w-6 h-6 object-contain"
                         />
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="flex justify-between text-sm text-gray-400">
+                          <span>{skill.name}</span>
+                          <span>{skill.level}%</span>
+                        </div>
+                        <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                          <motion.div
+                            className="bg-gradient-to-r from-blue-500 to-cyan-400 h-full rounded-full"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 1.5,
+                              delay: skillIdx * 0.15,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   ))}

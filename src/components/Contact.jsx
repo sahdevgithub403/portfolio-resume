@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { Mail, Phone, MapPin, Github, Linkedin, Send } from "lucide-react";
+import { useState } from "react";
 
 const socialLinks = {
   github: "https://github.com/sahdevpuran",
@@ -9,6 +10,9 @@ const socialLinks = {
 };
 
 const Contact = () => {
+  const [sent, setSent] = useState(false);
+  const controls = useAnimation();
+
   const fadeIn = (delay = 0) => ({
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -17,6 +21,19 @@ const Contact = () => {
       transition: { delay, duration: 0.6, ease: "easeOut" },
     },
   });
+
+  const handleSend = async (e) => {
+    e.preventDefault();
+    // Start animation
+    await controls.start({
+      x: ["0%", "100%"],
+      transition: { duration: 1.2, ease: "easeInOut" },
+    });
+    setSent(true);
+
+    // Reset after delay
+    setTimeout(() => setSent(false), 3000);
+  };
 
   return (
     <section
@@ -97,9 +114,7 @@ const Contact = () => {
           </div>
           <div className="flex items-center gap-4">
             <Phone className="text-blue-500" />
-            <p className="text-gray-600 dark:text-gray-300">
-              +91 6202157680
-            </p>
+            <p className="text-gray-600 dark:text-gray-300">+91 6202157680</p>
           </div>
           <div className="flex items-center gap-4">
             <MapPin className="text-blue-500" />
@@ -152,6 +167,7 @@ const Contact = () => {
           whileInView="visible"
           viewport={{ once: true }}
           className="space-y-6"
+          onSubmit={handleSend}
         >
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -184,12 +200,34 @@ const Contact = () => {
             ></textarea>
           </div>
 
+          {/* 🔥 Slider Animation Send Button */}
           <motion.button
+            type="submit"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="w-full py-3 rounded-xl text-white font-semibold bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-500 hover:to-blue-500 shadow-lg transition"
+            className="relative w-full py-3 rounded-xl font-semibold overflow-hidden text-white bg-gradient-to-r from-blue-600 to-blue-600 shadow-lg"
           >
-            Send Message
+            <motion.div
+              animate={controls}
+              className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-600"
+              style={{
+                x: sent ? "100%" : "0%",
+                width: "100%",
+                opacity: 0.3,
+              }}
+            />
+            <div className="relative z-10 flex justify-center items-center gap-2">
+              {sent ? (
+                <>
+                  <span>Message Sent</span> ✅
+                </>
+              ) : (
+                <>
+                  <span>Send Message</span>
+                  <Send size={18} className="mt-0.5" />
+                </>
+              )}
+            </div>
           </motion.button>
         </motion.form>
       </div>

@@ -12,26 +12,26 @@ const Projects = () => {
       tags: ["React", "Spring Boot", "Tailwind CSS", "MySQL", "JWT", "AI"],
       image:
         "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
-      status: "Live",
-    },
-    {
-      name: "E-Commerce App",
-      desc: "A full-stack e-commerce platform with authentication, product management, cart, and payment gateway.",
-      github: "https://github.com/sahdevgithub403/ecommerce",
-      demo: "#",
-      tags: ["React", "Spring Boot", "SQL", "Stripe"],
-      image:
-        "https://plus.unsplash.com/premium_photo-1684179639963-e141ce2f8074?w=600&auto=format&fit=crop&q=60",
       status: "In Progress",
     },
     {
-      name: "Portfolio Website",
+      name: "Bank Application",
+      desc: "A full-stack designed a modular banking system supporting deposit, withdrawal, and balance-tracking operations..",
+      github: "https://github.com/sahdevgithub403/ecommerce",
+      demo: "#",
+      tags: ["Java", "JDBC", "MySQL", "JSP"],
+      image:
+        "https://plus.unsplash.com/premium_photo-1684179639963-e141ce2f8074?w=600&auto=format&fit=crop&q=60",
+      status: "Live",
+    },
+    {
+      name: "Face Recognition Attendance System",
       desc: "An interactive personal portfolio showcasing skills, projects, and achievements.",
       github: "https://github.com/sahdevgithub403/portfolio-resume",
       demo: "#",
-      tags: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+      tags: ["React With Vite", "Tailwind CSS", "Python", "OpenCv"],
       image:
-        "https://plus.unsplash.com/premium_photo-1678565879444-f87c8bd9f241?w=600&auto=format&fit=crop&q=60",
+        "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*E5rexDhotCqksxqT4LKwyQ.jpeg",
       status: "Live",
     },
   ];
