@@ -11,7 +11,7 @@ const Projects = () => {
       demo: "#",
       tags: ["React", "Spring Boot", "Tailwind CSS", "MySQL", "JWT", "AI"],
       image:
-        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+        "https://i.pinimg.com/1200x/d9/39/c5/d939c53e67a2a3def35d703a932672f9.jpg",
       status: "In Progress",
     },
     {
@@ -21,7 +21,7 @@ const Projects = () => {
       demo: "#",
       tags: ["Java", "JDBC", "MySQL", "JSP"],
       image:
-        "https://plus.unsplash.com/premium_photo-1684179639963-e141ce2f8074?w=600&auto=format&fit=crop&q=60",
+        "https://img.lovepik.com/photo/45009/7851.jpg_wh860.jpg",
       status: "Live",
     },
     {
