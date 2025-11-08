@@ -51,7 +51,7 @@ Easy-to-use contact form and links to:
 ## 📸 Screenshots  
 
 ### 🏠 Home Page  
-![Home](./screenshots/home.png)
+![Home](Screenshot 2025-11-09 005525.png)
 
 ### 👨‍💻 About Page  
 ![About](./screenshots/about.png)
