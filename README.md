@@ -51,16 +51,16 @@ Easy-to-use contact form and links to:
 ## 📸 Screenshots  
 
 ### 🏠 Home Page  
-![Home](Screenshot 2025-11-09 005525.png)
+![Home](https://github.com/sahdevgithub403/portfolio-resume/blob/main/home.png?raw=true)
 
 ### 👨‍💻 About Page  
-![About](./screenshots/about.png)
+![About](https://github.com/sahdevgithub403/portfolio-resume/blob/main/about.png?raw=true)
 
 ### 🧱 Projects Page  
-![Projects](./screenshots/projects.png)
+![Projects](https://github.com/sahdevgithub403/portfolio-resume/blob/main/project.png?raw=true)
 
 ### 📞 Contact Page  
-![Contact](./screenshots/contact.png)
+![Contact](https://github.com/sahdevgithub403/portfolio-resume/blob/main/contact.png?raw=true)
 
 ---
 
